@@ -1,61 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-
-// const News = () => {
-//   const [news, setNews] = useState([]);
-//   const [error, setError] = useState(null); 
-
-//   useEffect(() => {
-//     const fetchNews = async () => {
-//       try {
-//         const response = await axios.get('https://newsapi.org/v2/top-headlines?country=in&apiKey=83488655236d44b695af7143fb388485');
-//         setNews(response.data.articles); 
-//       } catch (error) {
-//         setError(error);
-//         console.error('Error fetching news:', error); 
-//       }
-//     };
-
-//     fetchNews();
-//   }, []);
-
-//   return (
-//     <div className='container mx-auto  p-4'>
-//       <h2 className='text-3xl font-bold text-center font-mono bg-red-600'>LATEST NEWS</h2>
-//       {error ? (
-//         <p>Error fetching news: {error.message}</p>
-//       ) : news.length === 0 ? (
-//         <p>Loading news...</p>
-//       ) : (
-//         <ul>
-//           {news.map((article) => (
-//             <li
-//               className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-100 rounded-lg shadow-lg'
-//               key={article.urlToImage}
-//             >
-//               <a href={article.url} target="_blank" rel="noreferrer">
-//                 <img
-//                   className='w-1/2 h-full object-cover'
-//                   src={article.urlToImage}
-//                   alt={article.title}
-//                 />
-//               </a>
-//               <div className="flex flex-col">  
-//                 <h2 className='text-xl font-bold'>{article.title}</h2>
-//                 <p className='text-lg'>{article.description}</p>  
-//               </div>
-//               <p className='text-lg flex-row-reverse font-mono'>{article.publishedAt}</p>
-//             </li>
-//           ))}
-//         </ul>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default News;
-
-
 
 
 import React, { useEffect, useState } from 'react';
@@ -67,12 +9,19 @@ const News = () => {
   const [error, setError] = useState(null);
 
   const fetchNews = async () => {
+    const options = {
+      url:'https://newsdata.io/api/1/news?apikey=pub_39430033698e7c829562a5d5e495e74ea663f&q=pizza'
+
+    };
+
+        
+      
     try {
-      const response = await axios.get('https://newsapi.org/v2/top-headlines?country=in&apiKey=83488655236d44b695af7143fb388485');
-      setNews(response.data.articles);
+      const response = await axios.request(options);
+      console.log(response.data.results);
+      setNews(response.data.results);
     } catch (error) {
-      setError(error);
-      console.error('Error fetching news:', error);
+      console.error(error);
     }
   };
 
@@ -97,24 +46,24 @@ const News = () => {
         <p className='text-center'>Loading news...</p>
       ) : (
         <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {news.map((article) => (
+          {news.map((news) => (
             <li
               className='p-4 bg-white rounded-lg shadow-lg transition duration-300 transform hover:scale-105'
-              key={article.urlToImage}
+              key={news.Image}
             >
-              <a href={article.url} target='_blank' rel='noreferrer'>
+              <a href={news.link} target='_blank' rel='noreferrer'>
                 <img
                   className='w-full h-48 object-cover mb-4'
-                  src={article.urlToImage}
-                  alt={article.title}
+                  src={news.image_url}
+                  alt={news.title}
                 />
               </a>
               <div className='flex flex-col'>
-                <h2 className='text-xl font-bold'>{article.title}</h2>
-                <p className='text-gray-600 text-lg mb-2'>{article.description}</p>
+                <h2 className='text-xl font-bold'>{news.title}</h2>
+                <p className='text-gray-600 text-lg mb-2'>{news.description}</p>
                 <a
                   className='text-blue-500 hover:underline self-end'
-                  href={article.url}
+                  href={news.link}
                   target='_blank'
                   rel='noreferrer'
                 >
@@ -122,7 +71,7 @@ const News = () => {
                 </a>
               </div>
               <p className='text-gray-600 text-sm mt-2 self-end'>
-                {moment(article.publishedAt).fromNow()}
+                {moment(news.pubDate).fromNow()}
               </p>
             </li>
           ))}
@@ -133,3 +82,4 @@ const News = () => {
 };
 
 export default News;
+

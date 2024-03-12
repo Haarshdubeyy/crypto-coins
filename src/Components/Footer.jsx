@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-8 px-4 flex flex-col items-center sm:flex-row sm:justify-between">
       <div className="flex flex-col sm:flex-row gap-4 mb-4 sm:mb-0 items-center">
-        {/* Centered ul with inline-block list items */}
+        
         <ul className="list-none inline flex flex-col justify-center sm:justify-start sm:space-y-0">
           <li>
             <a href="/About" className="text-base hover:underline ">About</a>
@@ -19,7 +19,7 @@ const Footer = () => {
           <li>
             <a href="/Currency-converter" className="text-base hover:underline">Currency Converter</a>
           </li>
-          {/* Added dummy items */}
+        
           <li>
             <a href="/" className="text-base hover:underline">Resources</a>
           </li>

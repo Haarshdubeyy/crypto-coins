@@ -17,7 +17,7 @@ function InputBox({
     const handleAmountChange = (e) => {
       const inputValue = e.target.value.trim(); // Remove leading and trailing whitespaces
   
-      // Check if the input is empty or contains a valid positive number
+
       if (inputValue === '' || (!isNaN(inputValue) && parseFloat(inputValue) >= 0)) {
         onAmountChange && onAmountChange(inputValue === '' ? '' : Number(inputValue));
       }
