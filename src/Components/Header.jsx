@@ -1,56 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import Home from './Home';
 
-const Header = () => {
-  const buttonVariants = {
-    hover: { scale: 1.1 },
+const SideNavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const navVariants = {
+    open: { x: 0, transition: { duration: 0.3 } },
+    closed: { x: '-100%', transition: { duration: 0.3 } },
+  };
+
+  const linkVariants = {
+    open: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+    closed: { opacity: 0, y: -20 },
   };
 
   return (
-    <nav className="bg-gray-800 py-4 pr-8">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <div className="text-white font-bold text-xl mb-4 md:mb-0 pl-10">CryptoTracker</div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+    <div className="fixed top-0 left-0 z-50">
+      <button
+        className="p-4 bg-gray-800 text-white focus:outline-none"
+        onClick={toggleNav}
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+          />
+        </svg>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white hover:text-gray-300 transition duration-200"
+            variants={navVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="bg-gray-800 text-white p-6 h-screen w-64"
           >
-            <Link to="/">Home</Link>
+            <div className="text-xl font-bold mb-8">Navigation</div>
+            <motion.div
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              className="mb-4"
+            >
+              <Link to="/" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+                Home
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              className="mb-4"
+            >
+              <Link to="/coins" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+                Coins
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              className="mb-4"
+            >
+              <Link to="/exchanges" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+                Exchanges
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              className="mb-4"
+            >
+              <Link to="/news" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+                News
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              className="mb-4"
+            >
+              <Link to="/currency-converter" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+                Currency Converter
+              </Link>
+            </motion.div>
           </motion.div>
-          <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white hover:text-gray-300 transition duration-200"
-          >
-            <Link to="/coins">Coins</Link>
-          </motion.div>
-          <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white hover:text-gray-300 transition duration-200"
-          >
-            <Link to="/Exchanges">Exchanges</Link>
-          </motion.div>
-          <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white hover:text-gray-300 transition duration-200"
-          >
-            <Link to="/News">News</Link>
-          </motion.div>
-          <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white hover:text-gray-300 transition duration-200"
-          >
-            <Link to="/CurrencyConverter">Currency-Converter</Link>
-          </motion.div>
-        </div>
-      </div>
-    </nav>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
-export default Header;
+export default SideNavBar;

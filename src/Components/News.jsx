@@ -75,7 +75,7 @@ const News = () => {
                     Read more
                   </a>
                   <div className="text-gray-400 font-semibold">
-                    {moment(newsItem.pubDate).fromNow()}
+                    {moment(newsItem.publishedAt).fromNow()}
                   </div>
                 </div>
               </div>
