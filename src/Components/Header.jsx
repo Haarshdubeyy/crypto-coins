@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -9,45 +8,48 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-gradient-to-r from-purple-600 to-indigo-600 shadow shadow-gray-300 w-full px-8 md:px-auto text-white font-mono'>
-      <div className='container mx-auto flex justify-center'>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className='md:px-4 md:py-2 hover:text-yellow-300'
-        >
-          <Link to="/">Home</Link>
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className='md:px-4 md:py-2 hover:text-yellow-300 p-2'
-        >
-          <Link to='/coins'>Coins</Link>
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className='md:px-4 md:py-2 hover:text-yellow-300'
-        >
-          <Link to='/Exchanges'>Exchanges</Link>
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className='md:px-4 md:py-2 hover:text-yellow-300 p-2'
-        >
-          <Link to='/News'>News</Link>
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className='md:px-4 md:py-2 hover:text-yellow-300 p-2'
-        >
-          <Link to='/CurrencyConverter'>Currency-Converter</Link>
-        </motion.button>
+    <nav className="bg-gray-800 py-4 pr-8">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div className="text-white font-bold text-xl mb-4 md:mb-0 pl-10">CryptoTracker</div>
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white hover:text-gray-300 transition duration-200"
+          >
+            <Link to="/">Home</Link>
+          </motion.div>
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white hover:text-gray-300 transition duration-200"
+          >
+            <Link to="/coins">Coins</Link>
+          </motion.div>
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white hover:text-gray-300 transition duration-200"
+          >
+            <Link to="/Exchanges">Exchanges</Link>
+          </motion.div>
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white hover:text-gray-300 transition duration-200"
+          >
+            <Link to="/News">News</Link>
+          </motion.div>
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white hover:text-gray-300 transition duration-200"
+          >
+            <Link to="/CurrencyConverter">Currency-Converter</Link>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
