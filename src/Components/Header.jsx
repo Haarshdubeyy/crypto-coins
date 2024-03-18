@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Home from './Home';
+
 
 const SideNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +91,7 @@ const SideNavBar = () => {
               whileHover={{ scale: 1.05 }}
               className="mb-4"
             >
-              <Link to="/currency-converter" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
+              <Link to="/CurrencyConverter" onClick={toggleNav} className="text-gray-200 hover:text-white transition duration-200">
                 Currency Converter
               </Link>
             </motion.div>
