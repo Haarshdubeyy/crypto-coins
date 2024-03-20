@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import InputBox from './InputBox';
 import axios from 'axios';
@@ -45,16 +42,15 @@ const CurrencyConverter = () => {
   const convert = () => {
     const isValidAmount = !isNaN(amount) && parseFloat(amount) >= 0;
 
-   
     if (isValidAmount && exchangeRates[to] !== undefined && exchangeRates[from] !== undefined) {
       const baseAmount = from === 'USD' ? amount : amount / exchangeRates[from];
       const result = (baseAmount * exchangeRates[to]).toFixed(2);
       setConvertedAmount(result)
     } else {
-    
       setConvertedAmount(0);
     }
   };
+
   return (
     <div className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat" style={{ backgroundImage: `url('https://images.pexels.com/photos/14907338/pexels-photo-14907338.jpeg?auto=compress&cs=tinysrgb&w=400')` }}>
       <div className="w-full">
